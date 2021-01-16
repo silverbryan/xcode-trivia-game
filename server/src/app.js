@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
+const routes = require('./routes');
 
 require("./db.js");
 
@@ -18,7 +19,7 @@ server.use(
     })
 );
 
-// server.use("/api/v1/", routes);
+server.use("/api/v1/", routes);
 
 server.use((err, req, res, next) => {
     const status = err.status || 500;

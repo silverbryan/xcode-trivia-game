@@ -33,7 +33,12 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-//relaciones aqui!
+const { Game, Question, User, Category } = sequelize.models;
+
+Question.belongsTo(Category);
+User.hasMany(Game);
+Game.belongsTo(User, { foreignKey: 'userId' });
+Game.hasMany(Question, { foreignKey: 'questionId' });
 
 module.exports = {
     ...sequelize.models,
