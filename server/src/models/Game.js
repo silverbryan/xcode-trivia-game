@@ -10,16 +10,13 @@ module.exports = sequelize => {
         status: {
             type: DataTypes.ENUM('incomplete', 'finished'),
             defaultValue: 'incomplete',
-            allowNull: false
         },
         points: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             defaultValue: 0,
         },
         time: {
             type: DataTypes.INTEGER,
-            allowNull: false,
             defaultValue: 0,
         }
     })

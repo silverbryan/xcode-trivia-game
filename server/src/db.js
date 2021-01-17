@@ -37,7 +37,7 @@ const { Game, Question, User, Category } = sequelize.models;
 
 Question.hasOne(Category);
 User.hasMany(Game);
-Game.belongsTo(User, { foreignKey: 'userId' });
+Game.belongsTo(User);
 
 module.exports = {
     ...sequelize.models,

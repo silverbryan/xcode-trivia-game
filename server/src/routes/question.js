@@ -1,10 +1,23 @@
 const server = require('express').Router();
 const { Question } = require('../db');
 
-server.post('/new', (req, res) => {
-    const { name, answer, options, categoryId } = req.body;
+server.get('/all', (req, res) => {
+    Question.findAll()
+        .then(questions => {
+            return res.status(200).json({
+                results: questions.length,
+                data: questions,
+            })
+        })
+        .catch(err => {
+            return res.sendStatus(500);
+        })
+});
 
-    if (!name || !answer || !options || !categoryId) return res.sendStatus(404);
+server.post('/new', (req, res) => {
+    const { name, answer, options } = req.body;
+
+    if (!name || !answer || !options) return res.sendStatus(404);
 
     Question.create({
         name,

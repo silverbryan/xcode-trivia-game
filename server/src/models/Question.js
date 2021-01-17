@@ -16,7 +16,7 @@ module.exports = sequelize => {
             allowNull: false,
         },
         options: {
-            type: DataTypes.TEXT,
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
         }
     });
