@@ -35,10 +35,9 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Game, Question, User, Category } = sequelize.models;
 
-Question.belongsTo(Category);
+Question.hasOne(Category);
 User.hasMany(Game);
 Game.belongsTo(User, { foreignKey: 'userId' });
-Game.hasMany(Question, { foreignKey: 'questionId' });
 
 module.exports = {
     ...sequelize.models,
