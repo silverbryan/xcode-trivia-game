@@ -7,7 +7,14 @@ server.post('/new', async (req, res) => {
 
     if (!username || !questionsNro) return res.sendStatus(404);
 
-    c
+    const questions = [];
+    const dbquestions = await Question.findAll();
+    if (dbquestions.length >= questionsNro) {
+        for (let i = 0; i < questionsNro; i++) {
+            const randomNumber = Math.floor(Math.random() * dbquestions.length);
+            questions.push(dbquestions[randomNumber]);
+        }
+    }
 
     Game.create({
         userUsername: username,
