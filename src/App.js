@@ -1,11 +1,16 @@
-import './App.css';
-import { Home } from './pages';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom'
 
-function App() {
+import { Home, Game } from './pages';
+
+const App = () => {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/game" component={Game} />
+      </Switch>
+    </>
   );
 }
 
