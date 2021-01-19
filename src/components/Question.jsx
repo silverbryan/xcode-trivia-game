@@ -47,17 +47,19 @@ const BtnOption = styled.button`
     display: block;
     width: 100%;
 `;
-const Question = ({ question, options }) => {
+
+const Question = ({ name, options, checkIsCorrect }) => {
+
     return (
         <QuestionContainer>
             <div className="question__text">
-                <p>{question}</p>
+                <p>{name}</p>
             </div>
             <div className="question__options">
                 <ul className="options-list">
-                    {options.map(option => (
-                        <li className="option-item">
-                            <BtnOption color={option.color}>
+                    {options.map((option, i) => (
+                        <li key={i} className="option-item">
+                            <BtnOption color={option.color} data-option={option.name} onClick={checkIsCorrect}>
                                 {option.name}
                             </BtnOption>
                         </li>
