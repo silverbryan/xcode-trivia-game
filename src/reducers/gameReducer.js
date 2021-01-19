@@ -1,5 +1,9 @@
+import { SET_LOADING, SET_NEW_GAME } from '../constants';
 const initialState = {
-    isLoading: true,
+    loading: true,
+    errors: false,
+    points: 0,
+    time: 0,
     questions: [],
 };
 
@@ -10,7 +14,9 @@ function gameReducer(state = initialState, action) {
                 ...state,
                 isLoading: action.payload,
             }
-        case 
+        case SET_NEW_GAME: {
+
+        }
         default:
             break;
     }
