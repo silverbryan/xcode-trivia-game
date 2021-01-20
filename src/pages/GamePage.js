@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { multipleChoiseColors } from '../config';
 import { newGame, nextQuestion, wrongOption, correctOption } from '../actions/GameActions';
-import { Question } from '../components';
+import { Question, Container } from '../components';
 
 const Game = ({ loading, errors, points, time, currentQuestion, startNewGame, correctOption, wrongOption, nextQuestion }) => {
 
@@ -25,9 +26,9 @@ const Game = ({ loading, errors, points, time, currentQuestion, startNewGame, co
         return (
             <Question
                 name={currentQuestion.name}
-                options={currentQuestion.options.map(option => {
+                options={currentQuestion.options.map((option, index) => {
                     return {
-                        color: 'transparent',
+                        color: multipleChoiseColors[index],
                         name: option,
                     }
                 })}

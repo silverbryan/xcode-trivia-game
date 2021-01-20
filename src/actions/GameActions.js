@@ -12,7 +12,7 @@ import {
 export const newGame = username => dispatch => {
     const request = axios.post(`http://localhost:5000/api/v1/game/new`, {
         username: 'silverbryan',
-        questionsNro: 20,
+        questionsNro: 5,
     });
 
     function setLoading(status) {

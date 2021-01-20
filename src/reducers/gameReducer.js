@@ -1,4 +1,4 @@
-import { SET_LOADING, SET_NEW_GAME, SET_FIRST_QUESTION, NEXT_QUESTION } from '../constants';
+import { SET_LOADING, SET_NEW_GAME, SET_FIRST_QUESTION, SET_CATEGORIES, NEXT_QUESTION } from '../constants';
 
 const initialState = {
     loading: true,
@@ -6,6 +6,7 @@ const initialState = {
     points: 0,
     time: 0,
     currentQuestion: {},
+    categories: [],
     questions: [],
 };
 
@@ -15,6 +16,11 @@ export default function gameReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: action.payload,
+            }
+        case SET_CATEGORIES:
+            return {
+                ...state,
+                categories: action.payload,
             }
         case SET_NEW_GAME:
             return {

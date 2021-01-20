@@ -1,33 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Roulette } from '../components';
+import { rouletteColors } from '../config';
+import { getCategories } from '../actions/CategoryActions';
+import styled from 'styled-components';
 
-import { Navbar, Question } from '../components';
+const Container = styled.div`
+    margin: 0 15px;
+    
+    .container__roulette {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+`;
+const Home = ({ loading, categories, getCategories }) => {
 
-const Home = () => {
+    useEffect(() => {
+        getCategories();
+    }, []);
+
     return (
-        <>
-            <Navbar />
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2em' }}>
-                <div style={{ width: '80%' }}>
-                    <Question
-                        question={'Que es un HOC'}
-                        options={[{
-                            name: 'a) Hello',
-                            color: '#2F6DAE',
-                        }, {
-                            name: 'b) Hello',
-                            color: '#2C9CA6',
-                        }, {
-                            name: 'c) Hello',
-                            color: '#ECA82C',
-                        }, {
-                            name: 'd) Hello',
-                            color: '#D4546A',
-                        }]} />
-                </div>
-
+        <Container>
+            <div className="container__roulette">
+                <Roulette
+                    data={categories.map((category, index) => {
+                        return {
+                            option: category.name,
+                            style: {
+                                backgroundColor: rouletteColors[index],
+                                textColor: '#fff',
+                            }
+                        }
+                    })}
+                />
             </div>
-        </>
+
+        </Container>
     );
 }
 
-export default Home;
+function mapStateToProps(state) {
+    return state.gameReducer;
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getCategories: () => dispatch(getCategories())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
